@@ -15,58 +15,56 @@ import Service.ServicoService;
 public class Main {
 
     public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
+        try (Scanner scanner = new Scanner(System.in)) {
 
+            AnimalService animalService = new AnimalService();
+            ConsultaService consultaService = new ConsultaService();
+            DonoService donoService = new DonoService();
+            FuncionarioService funcionarioService = new FuncionarioService();
+            ServicoService servicoService = new ServicoService();
 
-        AnimalService animalService = new AnimalService();
-        ConsultaService consultaService = new ConsultaService();
-        DonoService donoService = new DonoService();
-        FuncionarioService funcionarioService = new FuncionarioService();
-        ServicoService servicoService = new ServicoService();
+            //controladores passando os serviços
+            AnimalController animalController = new AnimalController(animalService);
+            ConsultaController consultaController = new ConsultaController(consultaService);
+            DonoController donoController = new DonoController(donoService);
+            FuncionarioController funcionarioController = new FuncionarioController(funcionarioService);
+            ServicoController servicoController = new ServicoController(servicoService);
 
-        //controladores passando os serviços
-        AnimalController animalController = new AnimalController(animalService);
-        ConsultaController consultaController = new ConsultaController(consultaService);
-        DonoController donoController = new DonoController(donoService);
-        FuncionarioController funcionarioController = new FuncionarioController(funcionarioService);
-        ServicoController servicoController = new ServicoController(servicoService);
+            AnimalView animalView = new AnimalView(animalController);
+            ConsultaView consultaView = new ConsultaView(consultaController);
+            DonoView donoView = new DonoView(donoController);
+            FuncionarioView funcionarioView = new FuncionarioView(funcionarioController);
+            ServicoView servicoView = new ServicoView(servicoController);
 
-        AnimalView animalView = new AnimalView(animalController);
-        ConsultaView consultaView = new ConsultaView(consultaController);
-        DonoView donoView = new DonoView(donoController);
-        FuncionarioView funcionarioView = new FuncionarioView(funcionarioController);
-        ServicoView servicoView = new ServicoView(servicoController);
+            int opcao;
+            do {
+                exibirMenuPrincipal();
+                opcao = lerOpcao(scanner);
 
-        int opcao;
-        do {
-            exibirMenuPrincipal();
-            opcao = lerOpcao(scanner);
-
-            switch (opcao) {
-                case 1:
-                    animalView.exibirMenu();
-                    break;
-                case 2:
-                    consultaView.exibirMenu();
-                    break;
-                case 3:
-                    donoView.exibirMenu();
-                    break;
-                case 4:
-                    funcionarioView.exibirMenu();
-                    break;
-                case 5:
-                    servicoView.exibirMenu();
-                    break;
-                case 0:
-                    System.out.println("Saindo do programa...");
-                    break;
-                default:
-                    System.out.println("Opção inválida. Por favor, escolha uma opção válida.");
-            }
-        } while (opcao != 0);
-
-        scanner.close();
+                switch (opcao) {
+                    case 1:
+                        animalView.exibirMenu();
+                        break;
+                    case 2:
+                        consultaView.exibirMenu();
+                        break;
+                    case 3:
+                        donoView.exibirMenu();
+                        break;
+                    case 4:
+                        funcionarioView.exibirMenu();
+                        break;
+                    case 5:
+                        servicoView.exibirMenu();
+                        break;
+                    case 0:
+                        System.out.println("Saindo do programa...");
+                        break;
+                    default:
+                        System.out.println("Opção inválida. Por favor, escolha uma opção válida.");
+                }
+            } while (opcao != 0);
+        }
     }
 
     private static void exibirMenuPrincipal() {
