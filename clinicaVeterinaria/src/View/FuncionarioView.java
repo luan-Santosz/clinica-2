@@ -24,10 +24,10 @@ public class FuncionarioView {
             System.out.println("4. Excluir Funcionário");
             System.out.println("5. Sair");
             System.out.print("Escolha uma opção: ");
-            
+
             int opcao = scanner.nextInt();
             scanner.nextLine(); // Limpar o buffer do scanner
-            
+
             switch (opcao) {
                 case 1:
                     cadastrarFuncionario();
@@ -56,7 +56,7 @@ public class FuncionarioView {
         String nome = scanner.nextLine();
         System.out.print("Cargo: ");
         String cargo = scanner.nextLine();
-        
+
         funcionarioController.cadastrarFuncionario(nome, cargo);
         System.out.println("Funcionário cadastrado com sucesso.");
     }
@@ -66,7 +66,7 @@ public class FuncionarioView {
         System.out.print("ID do Funcionário: ");
         int id = scanner.nextInt();
         scanner.nextLine(); // Limpar o buffer do scanner
-        
+
         Funcionario funcionario = funcionarioController.buscarFuncionario(id);
         if (funcionario != null) {
             System.out.println("Funcionário encontrado:");
@@ -83,14 +83,14 @@ public class FuncionarioView {
         System.out.print("ID do Funcionário: ");
         int id = scanner.nextInt();
         scanner.nextLine(); // Limpar o buffer do scanner
-        
+
         Funcionario funcionario = funcionarioController.buscarFuncionario(id);
         if (funcionario != null) {
             System.out.print("Novo Nome: ");
             String nome = scanner.nextLine();
             System.out.print("Novo Cargo: ");
             String cargo = scanner.nextLine();
-            
+
             funcionarioController.atualizarFuncionario(id, nome, cargo);
             System.out.println("Funcionário atualizado com sucesso.");
         } else {
@@ -103,13 +103,12 @@ public class FuncionarioView {
         System.out.print("ID do Funcionário: ");
         int id = scanner.nextInt();
         scanner.nextLine(); // Limpar o buffer do scanner
-        
+
         funcionarioController.excluirFuncionario(id);
         System.out.println("Funcionário com ID " + id + " excluído com sucesso.");
     }
 
     public void fecharScanner() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'fecharScanner'");
+        scanner.close();
     }
 }
