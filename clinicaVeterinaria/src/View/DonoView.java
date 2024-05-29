@@ -111,8 +111,7 @@ public class DonoView {
     }
 
     public void fecharScanner() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'fecharScanner'");
+        scanner.close();
     }
     
 }
