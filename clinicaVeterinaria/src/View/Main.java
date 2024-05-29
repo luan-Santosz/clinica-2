@@ -1,16 +1,41 @@
 package View;
 
 import java.util.Scanner;
+import Controller.AnimalController;
+import Controller.ConsultaController;
+import Controller.DonoController;
+import Controller.FuncionarioController;
+import Controller.ServicoController;
+import Service.AnimalService;
+import Service.ConsultaService;
+import Service.DonoService;
+import Service.FuncionarioService;
+import Service.ServicoService;
 
 public class Main {
 
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-        AnimalView animalView = new AnimalView(null);
-        ConsultaView consultaView = new ConsultaView(null);
-        DonoView donoView = new DonoView(null);
-        FuncionarioView funcionarioView = new FuncionarioView(null);
-        ServicoView servicoView = new ServicoView(null);
+
+
+        AnimalService animalService = new AnimalService();
+        ConsultaService consultaService = new ConsultaService();
+        DonoService donoService = new DonoService();
+        FuncionarioService funcionarioService = new FuncionarioService();
+        ServicoService servicoService = new ServicoService();
+
+        //controladores passando os serviços
+        AnimalController animalController = new AnimalController(animalService);
+        ConsultaController consultaController = new ConsultaController(consultaService);
+        DonoController donoController = new DonoController(donoService);
+        FuncionarioController funcionarioController = new FuncionarioController(funcionarioService);
+        ServicoController servicoController = new ServicoController(servicoService);
+
+        AnimalView animalView = new AnimalView(animalController);
+        ConsultaView consultaView = new ConsultaView(consultaController);
+        DonoView donoView = new DonoView(donoController);
+        FuncionarioView funcionarioView = new FuncionarioView(funcionarioController);
+        ServicoView servicoView = new ServicoView(servicoController);
 
         int opcao;
         do {
