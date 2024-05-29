@@ -107,7 +107,7 @@ public class AnimalView {
     }
 
     public void fecharScanner() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'fecharScanner'");
+        scanner.close();
     }
+    
 }
