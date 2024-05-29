@@ -21,8 +21,11 @@ public class FuncionarioService {
     public void atualizarFuncionario(Funcionario funcionario) {
         if (funcionarios.containsKey(funcionario.getId())) {
             funcionarios.put(funcionario.getId(), funcionario);
+        } else {
+            System.out.println("Funcionário com ID " + funcionario.getId() + " não encontrado.");
         }
     }
+    
 
     public void excluirFuncionario(int id) {
         funcionarios.remove(id);
