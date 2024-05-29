@@ -7,15 +7,15 @@ import Controller.ConsultaController;
 import Model.Consulta;
 
 public class ConsultaView {
-    
+
     private final ConsultaController consultaController;
     private final Scanner scanner;
-    
+
     public ConsultaView(ConsultaController consultaController) {
         this.consultaController = consultaController;
         this.scanner = new Scanner(System.in);
     }
-    
+
     public void exibirMenu() {
         int opcao;
         do {
@@ -28,7 +28,7 @@ public class ConsultaView {
             System.out.print("Escolha uma opção: ");
             opcao = scanner.nextInt();
             scanner.nextLine(); // Limpar o buffer do scanner
-            
+
             switch (opcao) {
                 case 1:
                     marcarConsulta();
@@ -50,29 +50,28 @@ public class ConsultaView {
             }
         } while (opcao != 0);
     }
-    
+
     private void marcarConsulta() {
         System.out.println("Digite o ID do animal:");
         int idAnimal = scanner.nextInt();
         scanner.nextLine(); // Limpar o buffer do scanner
-        
+
         System.out.println("Digite o ID do veterinário:");
         int idVeterinario = scanner.nextInt();
         scanner.nextLine(); // Limpar o buffer do scanner
-        
+
         System.out.println("Digite a data da consulta (formato: yyyy-mm-dd):");
         String dataString = scanner.nextLine();
         Date data = Date.valueOf(dataString);
-        
-        ConsultaController.MarcarConsulta(idAnimal, idVeterinario, data);
 
+        consultaController.marcarConsulta(idAnimal, idVeterinario, data);
     }
-    
+
     private void buscarConsulta() {
         System.out.println("Digite o ID da consulta:");
         int idConsulta = scanner.nextInt();
         scanner.nextLine(); // Limpar o buffer do scanner
-        
+
         Consulta consulta = consultaController.buscarConsulta(idConsulta);
         if (consulta != null) {
             System.out.println("Consulta encontrada:");
@@ -81,28 +80,27 @@ public class ConsultaView {
             System.out.println("Consulta não encontrada.");
         }
     }
-    
+
     private void atualizarConsulta() {
         System.out.println("Digite o ID da consulta:");
         int idConsulta = scanner.nextInt();
         scanner.nextLine(); // Limpar o buffer do scanner
-        
+
         System.out.println("A consulta foi realizada? (true/false):");
         boolean realizada = scanner.nextBoolean();
-        
+
         consultaController.atualizarConsulta(idConsulta, realizada);
     }
-    
+
     private void excluirConsulta() {
         System.out.println("Digite o ID da consulta:");
         int idConsulta = scanner.nextInt();
         scanner.nextLine(); // Limpar o buffer do scanner
-        
+
         consultaController.excluirConsulta(idConsulta);
     }
 
     public void fecharScanner() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'fecharScanner'");
+        scanner.close();
     }
 }
