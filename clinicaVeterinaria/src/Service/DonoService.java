@@ -21,8 +21,11 @@ public class DonoService {
     public void atualizarDono(Dono dono) {
         if (donos.containsKey(dono.getId())) {
             donos.put(dono.getId(), dono);
+        } else {
+            System.out.println("Dono com ID " + dono.getId() + " não encontrado.");
         }
     }
+    
 
     public void excluirDono(int id) {
         donos.remove(id);
