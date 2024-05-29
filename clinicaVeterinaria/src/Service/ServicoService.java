@@ -21,8 +21,11 @@ public class ServicoService {
     public void atualizarServico(Servico servico) {
         if (servicos.containsKey(servico.getId())) {
             servicos.put(servico.getId(), servico);
+        } else {
+            System.out.println("Serviço com ID " + servico.getId() + " não encontrado.");
         }
     }
+    
 
     public void excluirServico(int id) {
         servicos.remove(id);
